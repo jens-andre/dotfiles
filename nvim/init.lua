@@ -1,6 +1,7 @@
 vim.api.nvim_exec("language en_GB.UTF-8", true)
 
-vim.g.netrw_banner = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.g.localleader = " "
 vim.g.mapleader = " "
 
@@ -76,6 +77,64 @@ require("lazy").setup({
       })
     end,
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup({
+        view = {
+          width = 40,
+          relativenumber = true,
+        },
+        renderer = {
+          indent_markers = {
+            enable = true,
+          },
+          icons = {
+            web_devicons = {
+              file = {
+                enable = false,
+                color = true,
+              },
+              folder = {
+                enable = false,
+                color = true,
+              },
+            },
+            show = {
+              file = false,
+              folder = false,
+              folder_arrow = false,
+              git = false,
+            },
+          },
+        },
+        actions = {
+          open_file = {
+            quit_on_open = true,
+            window_picker = {
+              enable = false,
+            },
+          },
+        },
+        filters = {
+          custom = { ".DS_Store" },
+        },
+        git = {
+          ignore = false,
+        },
+      })
+
+      vim.keymap.set("n", "<leader>et", "<cmd>NvimTreeToggle<CR>", { desc = "[T]oggle [E]xplorer" })
+      vim.keymap.set(
+        "n",
+        "<leader>ef",
+        "<cmd>NvimTreeFindFileToggle<CR>",
+        { desc = "Toggle [E]xplorer on current [F]ile" }
+      )
+      vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "[C]ollapse [E]xplorer" })
+      vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "[R]efresh [E]xplorer" })
+    end,
+  },
   "tpope/vim-sleuth",
   {
     "numToStr/Comment.nvim",
@@ -110,6 +169,7 @@ require("lazy").setup({
       require("which-key").register({
         ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
         ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+        ["<leader>e"] = { name = "[E]xplore", _ = "which_key_ignore" },
         ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
         ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
         ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
@@ -334,6 +394,7 @@ require("lazy").setup({
         markdown = { "prettier" },
         lua = { "stylua" },
         php = { "pint" },
+        blade = { "blade-formatter" },
       },
     },
   },
