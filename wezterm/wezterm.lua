@@ -3,7 +3,7 @@ local rose_pine = require("lua/rose-pine")
 local font = wezterm.font("SF Mono", { weight = "Regular", stretch = "Normal", style = "Normal" })
 local window_frame = rose_pine.window_frame()
 window_frame.font = font
-window_frame.font_size = 12
+window_frame.font_size = 13
 local colors = rose_pine.colors()
 colors.tab_bar.active_tab = { bg_color = colors.background, fg_color = colors.foreground }
 colors.tab_bar.inactive_tab_hover = colors.tab_bar.active_tab
@@ -27,7 +27,7 @@ return {
   show_tabs_in_tab_bar = true,
   show_new_tab_button_in_tab_bar = false,
   show_tab_index_in_tab_bar = true,
-  font_size = 14,
+  font_size = 13,
   font = font,
   font_rules = {
     {
