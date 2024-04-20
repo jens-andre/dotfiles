@@ -193,7 +193,19 @@ require("lazy").setup({
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
+      local actions = require("telescope.actions")
+
       require("telescope").setup({
+        defaults = {
+          path_display = { "truncate" },
+          mappings = {
+            i = {
+              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-d>"] = actions.delete_buffer,
+              ["<Esc>"] = actions.close,
+            },
+          },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
