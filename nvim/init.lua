@@ -319,6 +319,11 @@ require("lazy").setup({
       lspconfig["volar"].setup({
         capabilities = capabilities,
         filetypes = { "vue", "typescript", "javascript" },
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
       })
       lspconfig["lua_ls"].setup({
         capabilities = capabilities,
@@ -370,7 +375,7 @@ require("lazy").setup({
           "lua_ls",
           "emmet_ls",
           "intelephense",
-          "volar@1.8.27",
+          "volar",
         },
         automatic_installation = true,
       })
