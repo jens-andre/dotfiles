@@ -5,6 +5,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.localleader = " "
 vim.g.mapleader = " "
 
+vim.opt.textwidth = 0
+vim.opt.wrapmargin = 0
+vim.opt.wrap = true
+vim.opt.linebreak = true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.undofile = true
 vim.opt.number = true
@@ -27,8 +31,12 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 vim.keymap.set({ "i", "v" }, "<C-c>", "<Esc>")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<M-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("n", "h", '<cmd>echo "Use arrow keys!"<CR>')
+vim.keymap.set("n", "l", '<cmd>echo "Use arrow keys!"<CR>')
+vim.keymap.set("n", "k", '<cmd>echo "Use arrow keys!"<CR>')
+vim.keymap.set("n", "j", '<cmd>echo "Use arrow keys!"<CR>')
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -201,7 +209,7 @@ require("lazy").setup({
           mappings = {
             i = {
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-              ["<C-d>"] = actions.delete_buffer,
+              ["<C-w>"] = actions.delete_buffer,
               ["<Esc>"] = actions.close,
             },
           },
@@ -295,7 +303,7 @@ require("lazy").setup({
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       lspconfig["html"].setup({ capabilities = capabilities })
-      lspconfig["tsserver"].setup({ capabilities = capabilities })
+      -- lspconfig["tsserver"].setup({ capabilities = capabilities })
       lspconfig["cssls"].setup({ capabilities = capabilities })
       lspconfig["tailwindcss"].setup({ capabilities = capabilities })
       lspconfig["svelte"].setup({
@@ -367,7 +375,7 @@ require("lazy").setup({
       require("mason-lspconfig").setup({
         ensure_installed = {
           "rust_analyzer",
-          "tsserver",
+          -- "tsserver",
           "html",
           "cssls",
           "tailwindcss",
