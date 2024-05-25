@@ -33,10 +33,6 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>")
 vim.keymap.set({ "i", "v" }, "<C-c>", "<Esc>")
 vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<M-Down>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("n", "h", '<cmd>echo "Use arrow keys!"<CR>')
-vim.keymap.set("n", "l", '<cmd>echo "Use arrow keys!"<CR>')
-vim.keymap.set("n", "k", '<cmd>echo "Use arrow keys!"<CR>')
-vim.keymap.set("n", "j", '<cmd>echo "Use arrow keys!"<CR>')
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -511,9 +507,6 @@ require("lazy").setup({
         indent = {
           enable = true,
         },
-        autotag = {
-          enable = true,
-        },
         ensure_installed = {
           "json",
           "javascript",
@@ -547,6 +540,7 @@ require("lazy").setup({
 
       ---@diagnostic disable-next-line: missing-fields
       require("ts_context_commentstring").setup({})
+      require("nvim-ts-autotag").setup({})
     end,
   },
   "nvim-treesitter/nvim-treesitter-context",
